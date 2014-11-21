@@ -1,0 +1,38 @@
+#Author: Alejandro Correa
+#link: https://github.com/jacorread/Praat
+#Script name: close copy stylization
+
+clearinfo 
+
+# TextGrid data
+form Parámetros
+	natural textgrid ejemplo
+	natural tier 1 
+	natural duration 3.0
+endform 
+
+
+#Select Textgrid
+select TextGrid 'textgrid'
+ndepunto = Get number of points... 'tier'
+
+#Create table with pitch values
+Create PitchTier: "newpitch", 0, 'duration'
+
+for i to ndepunto
+	select TextGrid 'textgrid'
+	tiempopunto = Get time of point... 'tier' 'i'
+	pitch = Get label of point... 'tier' 'i' 
+	selectObject: "PitchTier newpitch"
+	Add point: tiempopunto, pitch	
+endfor 
+
+select Sound 'textgrid'
+To Manipulation: 0.01, 75, 600
+selectObject: "PitchTier newpitch"
+plusObject: "Manipulation 2"
+Replace pitch tier
+selectObject: "Manipulation 2"
+Get resynthesis (overlap-add)
+
+
