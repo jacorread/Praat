@@ -1,11 +1,11 @@
-#Author: Alejandro Correa
+#Author: Alejandro Correa, Instituto Caro y Cuervo
 #link: https://github.com/jacorread/Praat
-#Script name: close copy stylization
+#Purpose: close copy stylization according to IPO model of Intonation
 
 clearinfo 
 
 # TextGrid data
-form Parámetros
+form Info
 	natural textgrid ejemplo
 	natural tier 1 
 	natural duration 3.0
@@ -13,26 +13,29 @@ endform
 
 
 #Select Textgrid
+
 select TextGrid 'textgrid'
 ndepunto = Get number of points... 'tier'
 
-#Create table with pitch values
-Create PitchTier: "newpitch", 0, 'duration'
+#Create pitch tier
+	pitch_ID= Create PitchTier: "newpitch", 0, 'duration'
+#DefinePitchtier
 
+ 
 for i to ndepunto
 	select TextGrid 'textgrid'
 	tiempopunto = Get time of point... 'tier' 'i'
 	pitch = Get label of point... 'tier' 'i' 
-	selectObject: "PitchTier newpitch"
+	selectObject: pitch_ID
 	Add point: tiempopunto, pitch	
 endfor 
 
+#Resynthesis
+
 select Sound 'textgrid'
-To Manipulation: 0.01, 75, 600
-selectObject: "PitchTier newpitch"
-plusObject: "Manipulation 2"
+manipulation_ID = To Manipulation: 0.01, 75, 600
+	selectObject: pitch_ID
+	plusObject: manipulation_ID 
 Replace pitch tier
-selectObject: "Manipulation 2"
+	selectObject: manipulation_ID
 Get resynthesis (overlap-add)
-
-
