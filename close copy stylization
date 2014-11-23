@@ -1,26 +1,26 @@
 #Author: José Alejandro Correa (www.alejandrocorrea.co), Instituto Caro y Cuervo, 21st november, 2014
 #Permanent link: https://github.com/jacorread/Praat
 #Purpose: close copy stylization according to the IPO model of Intonation.
-# The script requires a point tier marked with the value (in Hertz) of each pitch movement.
+#The script requires a point tier marked with the value of each pitch movement and a sound file with the same name. 
+#Output: a new sound object with stylized pitch contourn
 
 # TextGrid data
 form Info
-	natural textgrid ejemplo
 	natural tier 1 
 	natural duration 3.0
 endform 
 
-
 #Select Textgrid
+textgrid$ = selected$ ("TextGrid")
+	select TextGrid 'textgrid$'
 
-select TextGrid 'textgrid'
 npoints = Get number of points... 'tier'
 
 #Create pitch tier
 	pitch_ID= Create PitchTier: "newpitch", 0, 'duration'
 
 for i to npoints
-	select TextGrid 'textgrid'
+	select TextGrid 'textgrid$'
 	point_time = Get time of point... 'tier' 'i'
 	pitch_value = Get label of point... 'tier' 'i' 
 	selectObject: pitch_ID
@@ -29,7 +29,7 @@ endfor
 
 #Resynthesis
 
-select Sound 'textgrid'
+select Sound 'textgrid$'
 manipulation_ID = To Manipulation: 0.01, 75, 600
 	selectObject: pitch_ID
 	plusObject: manipulation_ID 
