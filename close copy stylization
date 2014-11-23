@@ -1,8 +1,7 @@
-#Author: Alejandro Correa, Instituto Caro y Cuervo
-#link: https://github.com/jacorread/Praat
-#Purpose: close copy stylization according to IPO model of Intonation
-
-clearinfo 
+#Author: José Alejandro Correa (www.alejandrocorrea.co), Instituto Caro y Cuervo, 21st november, 2014
+#Permanent link: https://github.com/jacorread/Praat
+#Purpose: close copy stylization according to the IPO model of Intonation.
+# The script requires a point tier marked with the value (in Hertz) of each pitch movement.
 
 # TextGrid data
 form Info
@@ -15,19 +14,17 @@ endform
 #Select Textgrid
 
 select TextGrid 'textgrid'
-ndepunto = Get number of points... 'tier'
+npoints = Get number of points... 'tier'
 
 #Create pitch tier
 	pitch_ID= Create PitchTier: "newpitch", 0, 'duration'
-#DefinePitchtier
 
- 
-for i to ndepunto
+for i to npoints
 	select TextGrid 'textgrid'
-	tiempopunto = Get time of point... 'tier' 'i'
-	pitch = Get label of point... 'tier' 'i' 
+	point_time = Get time of point... 'tier' 'i'
+	pitch_value = Get label of point... 'tier' 'i' 
 	selectObject: pitch_ID
-	Add point: tiempopunto, pitch	
+	Add point: point_time, pitch_value	
 endfor 
 
 #Resynthesis
