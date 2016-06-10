@@ -2,7 +2,7 @@
 #Permanent link: https://github.com/jacorread/Praat
 #Purpose: close copy stylization according to the IPO model of Intonation.
 #The script requires a point tier marked with the value of each pitch movement and a sound file with the same name. 
-#Output: a new sound object with stylized pitch contourn
+#Output: a new sound object with stylized pitch contour
 
 # TextGrid data
 form Info
