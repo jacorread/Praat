@@ -1,0 +1,5 @@
+#Author: José Alejandro Correa (www.alejandrocorrea.co), 21st may, 2018
+#Permanent link: 
+#Purpose: adds a point tier at the beginning, center and end of a given interval
+#The script requires a non-empty interval tier. 
+#Output: a new point tier at the beginning, center and end of a given interval
