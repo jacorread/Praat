@@ -1,6 +1,12 @@
-#Autor: José Alejandro Correa (www.alejandrocorrea.co), 21 de mayo de 2018
+########################################################################################################################################
+#Autor: José Alejandro Correa (www.alejandrocorrea.co), 22 de mayo de 2018
 #Enlace: https://github.com/jacorread/Praat/blob/master/NewPointTier
-#Objetivo: añade un Point Tier al inicio, centro y final de un Interval Tier
+#Objetivo: Este script añade "point tiers" al inicio, centro y final de los intervalos no vacíos
+########################################################################################################################################
+# Instrucciones:
+# 	1. Abra un TextGrid con un tier de intervalos
+# 	2. Seleccione el TextGrid, corra el script, y especifique la ubicación del tier de intervalos y la posición del nuevo Point Tier
+########################################################################################################################################
 
 #Información del TextGrid
 
@@ -19,7 +25,7 @@ selectObject: textgrid
 
 Insert point tier: puntos, "nombre"
 
-# Añadimos al Point tier marcas alineadas al inicio y final del intervalo
+# Añadimos al Point tier marcas alineadas al inicio, centro y final de cada intervalo
 
 n= Get number of intervals: intervalo
 
