@@ -1,14 +1,14 @@
 ########################################################################################################################################
 #Autor: José Alejandro Correa (www.alejandrocorrea.co), 22 de mayo de 2018
 #Enlace: https://github.com/jacorread/Praat/blob/master/NewPointTier
-#Objetivo: Este script añade "point tiers" al inicio, centro y final de los intervalos no vacíos
+#Objetivo: The script adds a point tiers with  al inicio, centro y final de los intervalos no vacíos
 ########################################################################################################################################
 # Instrucciones:
 # 	1. Abra un TextGrid con un tier de intervalos
 # 	2. Seleccione el TextGrid, corra el script, y especifique la ubicación del tier de intervalos y la posición del nuevo Point Tier
 ########################################################################################################################################
-
-#Información del TextGrid
+# Información del TextGrid
+#########################################################################################################################################
 
 form 
 	natural intervalo 1
@@ -16,7 +16,7 @@ form
 	sentence nombre: target
 endform
 
-#Selecciona el Texgrid
+#Selecciona el TexGrid
 
 textgrid =  selected ("TextGrid")
 selectObject: textgrid
@@ -27,17 +27,17 @@ Insert point tier: puntos, "nombre"
 
 # Añadimos al Point tier marcas alineadas al inicio, centro y final de cada intervalo
 
-n= Get number of intervals: intervalo
+n = Get number of intervals: intervalo
 
 for i to n
   	segmento$ = Get label of interval: intervalo, i
- if segmento$ <> "" 
+    if segmento$ <> "" 
 	inicio = Get start time of interval: intervalo, i
-	final= Get end time of interval: intervalo, i
+	final = Get end time of interval: intervalo, i
 	Insert point: puntos, inicio, " "
  	Insert point: puntos, final, " "
-	tiempo= (final-inicio)*0.5
-	centro= inicio+tiempo
+	tiempo = (final-inicio)* 0.5
+	centro = inicio+tiempo
 	Insert point: puntos, centro, " "
- endif
+    endif
 endfor
