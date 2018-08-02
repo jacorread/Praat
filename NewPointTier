@@ -1,7 +1,7 @@
 ########################################################################################################################################
 #Autor: José Alejandro Correa (www.alejandrocorrea.co), 22 de mayo de 2018
 #Enlace: https://github.com/jacorread/Praat/blob/master/NewPointTier
-#Objetivo: Elscript añade un point tier alineado al inicio, centro y final de los intervalos no vacíos (con anotaciones)
+#Objetivo: El script añade un point tier alineado al inicio, centro y final de los intervalos no vacíos (con anotaciones)
 ########################################################################################################################################
 # Instrucciones:
 # 	1. Abra un TextGrid con un tier de intervalos
