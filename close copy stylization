@@ -7,7 +7,7 @@
 # TextGrid data
 form Info
 	natural tier 1 
-	natural duration 3.0
+	real duration 3.0
 endform 
 
 #Select Textgrid
