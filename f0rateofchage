@@ -3,7 +3,7 @@
 # https://github.com/jacorread/Praat																						
 # Purpose: f0 rate of change (p-v/t) 																										#
 # Interpretation: Positive numbers are associated to raising pitch movements, while negative values are associated to falling contours.																				#
-# Output: a table with f0 rate of change e.g., 10 Hz/s																						#
+# Output: a table with f0 rate of change e.g., 0.3 Hz/s																						#
 #############################################################################################################################################
 
 clearinfo 
