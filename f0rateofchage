@@ -1,0 +1,56 @@
+#############################################################################################################################################
+# Author: Alejandro Correa (https://jacorread.github.io/), Instituto Caro y Cuervo, 25st october, 2022										#																											
+# https://github.com/jacorread/Praat																						
+# Purpose: f0 rate of change (p-v/t) 																										#
+# Interpretation: Positive numbers are associated to raising pitch movements, while negative values are associated to falling contours.																				#
+# Output: a table with f0 rate of change e.g., 10 Hz/s																						#
+#############################################################################################################################################
+
+clearinfo 
+
+# Presenta el formulario para los datos del informante 
+
+form Configuración
+	comment ¿En cuál tier están los tonos o pitch-accents?
+	natural mi_tier 1  
+comment Una ventana de 0.0 está calculada para un f0min de 75 Hz 
+	real time_step 0.0 (= auto)
+comment Asigne el rango teniendo en cuenta el sexo y el valor medio de la f0 del hablante.
+	natural f0_min 75
+	natural f0_max 200
+endform
+
+
+#Imprime una línea de títulos de columnas 
+printline Intervalo'tab$'Duración'tab$'Tono 'tab$'F0rt
+
+soundID = selected("Sound")
+textGridID = selected("TextGrid")
+
+selectObject: soundID
+pitch = To Pitch: 0, f0_min, f0_max
+minusObject: soundID
+
+
+selectObject: textGridID
+	numberOfIntervals = Get number of intervals: mi_tier
+
+
+for n from 1 to numberOfIntervals
+ selectObject: textGridID
+	label$ = Get label of interval: mi_tier, n
+if label$ <> ""
+    		startTime = Get start point: mi_tier , n
+    		endTime = Get end point: mi_tier , n
+        	duration = (endTime - startTime)*1000
+selectObject: pitch
+			valley = Get value at time: startTime , "Hertz", "linear"
+			peak = Get value at time:  endTime , "Hertz", "linear"
+			f0rt = (peak - valley)/ duration
+printline 'n''tab$''duration:3''tab$''label$''tab$''f0rt:3''newline$'
+
+	endif
+endfor
+
+select all
+Remove
