@@ -1,9 +1,10 @@
 #############################################################################################################################################
-# Author: Alejandro Correa (https://jacorread.github.io/), Instituto Caro y Cuervo, 25st october, 2022										#																											
-# https://github.com/jacorread/Praat																						
-# Purpose: f0 rate of change (p-v/t) 																										#
+# Author: Alejandro Correa (https://jacorread.github.io/), Instituto Caro y Cuervo, 29st october, 2022										#																											
+# https://github.com/jacorread/Praat/edit/master/f0rateofchange																						
+# Purpose: f0 rate of change (p-v/t) 
+# The script requires a TextGrid with an interval tier aligned with a pitch movement and a sound file with the same name
 # Interpretation: Positive numbers are associated to raising pitch movements, while negative values are associated to falling contours.																				#
-# Output: a table with f0 rate of change e.g., 0.3 Hz/s																						#
+# Output: a table with interval duration, a pitch-accent/tone and f0 rate of change (e.g., 0.3 Hz/s)																						#
 #############################################################################################################################################
 
 clearinfo 
