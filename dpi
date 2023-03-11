@@ -4,7 +4,7 @@
 # Purpose: script for listing duration, pitch and intensity means.
 # Instructions: Select a Sound object and a TextGrid with the same name, then adjust the settings for each speaker
 # File name: dpi.praat	
-# Enlace: https://github.com/jacorread/Praat/blob/442032caa9b6e09eeacb39864b571dc87dfbe583/dpi
+# Link: https://github.com/jacorread/Praat/blob/442032caa9b6e09eeacb39864b571dc87dfbe583/dpi
 #############################################################################################################################################
 
 clearinfo 
