@@ -48,9 +48,9 @@ numberOfIntervals = Get number of intervals... mi_tier
 
 for j from 1 to numberOfIntervals
 selectObject: textGridID
-numberOfIntervals = Get number of intervals... mi_tier
-	label$ = Get label of interval... mi_tier j
-	if label$ <> ""
+		numberOfIntervals = Get number of intervals... mi_tier
+		label$ = Get label of interval... mi_tier j
+if label$ <> ""
 		start = Get starting point... mi_tier j
 		end = Get end point... mi_tier j
 		duration = (end - start)*1000
