@@ -1,0 +1,70 @@
+#############################################################################################################################################
+# Author: Alejandro Correa (https://jacorread.github.io/), Instituto Caro y Cuervo, 11st march, 2023																																					
+# https://github.com/jacorread/Praat																						
+# Purpose: script for listing duration, pitch and intensity means.
+# Instructions: Select a Sound object and a TextGrid with the same name, then adjust the settings for each speaker
+# File name: dpi.praat																																								
+#############################################################################################################################################
+
+clearinfo 
+
+# Configuration
+
+form Configuración
+	comment ¿En cuál tier están los grupos fónicos?
+	integer mi_tier 7  
+comment Una ventana de 0.0 está calculada para un f0min de 75 Hz 
+	real time_step 0.0 (= auto)
+comment Asigne el rango teniendo en cuenta el sexo y el valor medio de la f0 del hablante.
+	natural f0_min 75
+	natural f0_max 500
+comment Rango de intensidad (dB)
+	natural dB_min 50
+	natural dB_max 100
+endform
+
+#Print column names
+printline GrupoF 'tab$'Duration 'tab$'f0_mean 'tab$'f0_min 'tab$'f0_max 'tab$' dB_mean 'tab$' dB_min 'tab$'dB_max
+
+
+soundID = selected("Sound")
+textGridID = selected("TextGrid")
+
+
+#Create pitch object
+selectObject: soundID
+pitch = To Pitch: 0, f0_min, f0_max
+
+#Create intensity object
+selectObject: soundID
+intensity = To Intensity: f0_min, 0, "yes"
+minusObject: soundID
+
+#Select Textgrid
+selectObject: textGridID
+numberOfIntervals = Get number of intervals... mi_tier
+
+
+for j from 1 to numberOfIntervals
+selectObject: textGridID
+numberOfIntervals = Get number of intervals... mi_tier
+	label$ = Get label of interval... mi_tier j
+	if label$ <> ""
+		start = Get starting point... mi_tier j
+		end = Get end point... mi_tier j
+		duration = (end - start)*1000
+selectObject: pitch
+		pitch_mean = Get mean: start, end, "Hertz"
+		pitch_min = Get minimum: start, end, "Hertz", "parabolic"
+		pitch_max = Get maximum: start, end, "Hertz", "parabolic"
+selectObject: intensity
+		intensity_mean = Get mean: start, end, "dB"
+		intensity_min = Get minimum: start, end, "parabolic"
+		intensity_max = Get maximum: start, end, "parabolic"
+		printline 'label$''tab$''duration:3''tab$' 'pitch_mean:2' 'tab$' 'pitch_min:2' 'tab$' 'pitch_max:2' 'tab$' 'intensity_mean:2' 'tab$' 'intensity_min:2' 'tab$' 'intensity_max:2' 'newline$'
+	endif
+endfor
+
+
+select all
+Remove
